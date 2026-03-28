@@ -1,0 +1,41 @@
+@extends('layouts.admin')
+
+@section('title', $author->name . ' | Admin')
+
+@section('content')
+    <div class="mb-8 flex items-center justify-between gap-4">
+        <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Author Detail</p>
+            <h1 class="mt-2 text-5xl">{{ $author->name }}</h1>
+        </div>
+        <div class="flex gap-3">
+            <a href="{{ route('admin.authors.edit', $author) }}" class="btn-primary">Edit</a>
+            <a href="{{ route('admin.authors.index') }}" class="btn-secondary">Back</a>
+        </div>
+    </div>
+
+    <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+        <div class="panel overflow-hidden">
+            <div class="aspect-[4/5] bg-gradient-to-br from-amber-100 to-slate-100">
+                @if($author->photo)
+                    <img src="{{ asset('storage/' . $author->photo) }}" alt="{{ $author->name }}" class="h-full w-full object-cover">
+                @endif
+            </div>
+        </div>
+
+        <div class="space-y-4">
+            <div class="panel p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Born year</p>
+                <p class="mt-2 text-lg font-semibold text-slate-900">{{ $author->born_year ?: 'N/A' }}</p>
+
+                <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Books count</p>
+                <p class="mt-2 text-lg font-semibold text-slate-900">{{ $author->books_count }}</p>
+            </div>
+
+            <div class="panel p-6">
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Bio</p>
+                <p class="mt-4 leading-7 text-slate-600">{{ $author->bio ?: 'No biography provided.' }}</p>
+            </div>
+        </div>
+    </div>
+@endsection
