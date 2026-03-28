@@ -17,7 +17,7 @@ COPY . .
 RUN composer install --no-dev --optimize-autoloader
 
 # Install Node deps & build
-RUN npm install --legacy-peer-deps && npm install autoprefixer --save-dev && npm run build
+# RUN npm install --legacy-peer-deps && npm install autoprefixer --save-dev && npm run build
 # Laravel optimize
 RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
 
