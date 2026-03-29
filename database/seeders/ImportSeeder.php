@@ -42,6 +42,14 @@ class ImportSeeder extends Seeder
             foreach ($rows as $row) {
                 DB::connection('pgsql')->table($tableName)->insert((array)$row);
             }
+
+            // Update PostgreSQL sequence so it doesn't collide with imported IDs
+            if (DB::connection('pgsql')->getDriverName() === 'pgsql') {
+                $maxId = DB::connection('pgsql')->table($tableName)->max('id');
+                if ($maxId) {
+                    DB::connection('pgsql')->statement("SELECT setval(pg_get_serial_sequence('$tableName', 'id'), $maxId)");
+                }
+            }
         }
     }
 }

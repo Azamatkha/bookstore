@@ -15,7 +15,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-[linear-gradient(180deg,#f8fbff_0%,#eef6ff_100%)]">
-            <div class="mx-auto flex min-h-screen max-w-[1600px]">
+            <div class="mx-auto flex min-h-screen max-w-[1920px]">
                 @include('layouts.partials.admin-sidebar')
 
                 <main class="min-w-0 flex-1 p-6 lg:p-8">
