@@ -26,5 +26,9 @@ class AppServiceProvider extends ServiceProvider
         Blade::directive('money', function (string $expression): string {
             return "<?php echo \\App\\Support\\Currency::format({$expression}); ?>";
         });
+
+        if (app()->environment('production')) {
+            URL::forceScheme('https');
+        }
     }
 }
