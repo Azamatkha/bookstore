@@ -1,4 +1,4 @@
-<!-- storefront/home.blade.php -->
+<!-- home.blade.php -->
 @extends('layouts.store')
 
 @section('title', 'BookStore')
