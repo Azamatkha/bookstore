@@ -20,11 +20,11 @@ RUN composer install --no-dev --optimize-autoloader
 # RUN npm install --legacy-peer-deps && npm install autoprefixer --save-dev && npm run build
 
 # Laravel optimize
-RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
+RUN php artisan config:clear && php artisan route:cache && php artisan view:cache
 
 # Start server
 CMD php artisan serve --host=0.0.0.0 --port=$PORT
 
 RUN chmod -R 775 storage bootstrap/cache
 
-CMD php artisan migrate --force && php artisan config:clear && php artisan cache:clear && php artisan serve --host=0.0.0.0 --port=$PORT
+CMD php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT
