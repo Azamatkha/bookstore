@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title', 'Admin | BookStore')</title>
-        <link rel="icon" href="{{ Vite::asset('resources/images/books.ico') }}" sizes="any">
+        <link rel="icon" href="{{ asset('/images/books.ico')}}" sizes="any">
 
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=poppins:400,500,600,700&display=swap" rel="stylesheet" />

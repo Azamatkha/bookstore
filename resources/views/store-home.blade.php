@@ -1,3 +1,4 @@
+<!-- store-home.blade.php -->
 @extends('layouts.store')
 
 @section('title', 'BookStore')

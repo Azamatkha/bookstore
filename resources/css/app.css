@@ -1,3 +1,4 @@
+/* app.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -27,15 +28,15 @@
 
 @layer components {
     .page-shell {
-        @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+        @apply mx-auto max-w-7xl px-3.5 sm:px-5 lg:px-7 xl:px-8;
     }
 
     .panel {
-        @apply rounded-[1.5rem] border border-slate-200/80 bg-white/90 shadow-[0_20px_70px_-30px_rgba(15,23,42,0.25)] sm:rounded-3xl;
+        @apply rounded-[1.5rem] border border-slate-200/80 bg-white/90 shadow-[0_20px_70px_-30px_rgba(15, 23, 42, 0.25)] sm:rounded-3xl;
     }
 
     .glass-panel {
-        @apply rounded-[1.5rem] border border-white/60 bg-white/70 shadow-[0_24px_60px_-28px_rgba(15,23,42,0.35)] backdrop-blur sm:rounded-3xl;
+        @apply rounded-[1.5rem] border border-white/60 bg-white/70 shadow-[0_24px_60px_-28px_rgba(15, 23, 42, 0.35)] backdrop-blur sm:rounded-3xl;
     }
 
     .hero-panel {
@@ -126,7 +127,7 @@
     }
 
     .hero-quote-heading {
-        @apply max-w-3xl text-2xl leading-tight text-slate-950 sm:text-3xl lg:text-5xl;
+        @apply max-w-3xl text-2xl leading-tight text-slate-950 sm:text-3xl lg:text-4xl;
     }
 
     .hero-quote-author {
@@ -147,11 +148,11 @@
     }
 
     .featured-stack {
-        @apply grid gap-3 sm:gap-4;
+        @apply grid gap-2.5 sm:gap-3;
     }
 
     .featured-card {
-        @apply flex items-center gap-3 rounded-[1.5rem] border border-white/70 bg-white/90 p-3 shadow-[0_18px_44px_-28px_rgba(15,23,42,0.28)] transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_26px_50px_-28px_rgba(15,23,42,0.34)] sm:gap-4 sm:rounded-3xl sm:p-4;
+        @apply flex items-center gap-3 rounded-[1.35rem] border border-white/70 bg-white/90 p-3 shadow-[0_18px_44px_-28px_rgba(15, 23, 42, 0.28)] transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_26px_50px_-28px_rgba(15, 23, 42, 0.34)] sm:gap-3.5 sm:rounded-[1.6rem] sm:p-3.5;
     }
 
     .auth-page {
@@ -159,7 +160,7 @@
     }
 
     .auth-card {
-        @apply w-full max-w-md rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_60px_-34px_rgba(15,23,42,0.22)] sm:p-10;
+        @apply w-full max-w-md rounded-[2rem] border border-slate-200 bg-white p-8 shadow-[0_24px_60px_-34px_rgba(15, 23, 42, 0.22)] sm:p-10;
     }
 
     .auth-title {
@@ -183,7 +184,7 @@
     }
 
     .auth-primary {
-        @apply inline-flex w-full items-center justify-center rounded-xl bg-sky-900 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-sky-800 hover:shadow-[0_18px_30px_-18px_rgba(3,105,161,0.55)] focus:outline-none focus:ring-2 focus:ring-blue-500/25 focus:ring-offset-2;
+        @apply inline-flex w-full items-center justify-center rounded-xl bg-sky-900 px-5 py-3 text-sm font-semibold text-white transition duration-300 hover:bg-sky-800 hover:shadow-[0_18px_30px_-18px_rgba(3, 105, 161, 0.55)] focus:outline-none focus:ring-2 focus:ring-blue-500/25 focus:ring-offset-2;
     }
 
     .auth-checkbox {
@@ -191,15 +192,15 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center rounded-full bg-sky-900 px-4 py-2 text-xs font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-sky-800 hover:shadow-[0_16px_30px_-18px_rgba(3,105,161,0.55)] sm:px-5 sm:py-2.5 sm:text-sm;
+        @apply inline-flex min-h-10 items-center justify-center rounded-full bg-sky-900 px-3.5 py-2 text-xs font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-sky-800 hover:shadow-[0_16px_30px_-18px_rgba(3, 105, 161, 0.55)] sm:min-h-11 sm:px-4 sm:text-sm;
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-[0_14px_28px_-22px_rgba(15,23,42,0.35)] sm:px-5 sm:py-2.5 sm:text-sm;
+        @apply inline-flex min-h-10 items-center justify-center rounded-full border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-[0_14px_28px_-22px_rgba(15, 23, 42, 0.35)] sm:min-h-11 sm:px-4 sm:text-sm;
     }
 
     .nav-btn {
-        @apply inline-flex min-h-9 items-center justify-center rounded-full px-3 py-1.5 text-xs font-medium transition sm:min-h-10 sm:px-4 sm:text-sm;
+        @apply inline-flex min-h-9 shrink-0 items-center justify-center whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-medium transition sm:min-h-10 sm:px-3.5 sm:text-sm;
     }
 
     .nav-btn-secondary {
@@ -215,27 +216,27 @@
     }
 
     .field-label {
-        @apply mb-2 block text-sm font-semibold text-slate-700;
+        @apply mb-1.5 block text-xs font-semibold uppercase tracking-[0.16em] text-slate-600;
     }
 
     .field-input {
-        @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:rounded-2xl sm:px-4 sm:py-3;
+        @apply h-10 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:h-11 sm:px-3.5;
     }
 
     .field-textarea {
-        @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:rounded-2xl sm:px-4 sm:py-3;
+        @apply w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:px-3.5 sm:py-2.5;
     }
 
     .field-select {
-        @apply w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:rounded-2xl sm:px-4 sm:py-3;
+        @apply h-10 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm focus:border-sky-500 focus:ring-sky-500 sm:h-11 sm:px-3.5;
     }
 
     .metric-card {
-        @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)];
+        @apply rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_16px_40px_-24px_rgba(15, 23, 42, 0.35)];
     }
 
     .table-shell {
-        @apply overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_16px_40px_-24px_rgba(15,23,42,0.35)];
+        @apply overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-[0_16px_40px_-24px_rgba(15, 23, 42, 0.35)];
     }
 
     .table-head {

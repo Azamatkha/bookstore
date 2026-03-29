@@ -81,12 +81,12 @@
         <section class="page-shell pb-16">
             <div class="mb-6 flex items-center justify-between gap-4">
                 <div>
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Related Titles</p>
-                    <h2 class="mt-1 text-2xl sm:text-3xl lg:text-4xl">Continue Browsing</h2>
+                    <p class="text-xs font-semibold uppercase tracking-[0.3em] text-slate-400">Related Titles</p>
+                    <h2 class="mt-1 text-xl sm:text-2xl lg:text-3xl">Continue Browsing</h2>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div class="grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 sm:gap-4 lg:grid-cols-3">
                 @foreach($relatedBooks as $relatedBook)
                     <x-book-card :book="$relatedBook" />
                 @endforeach
