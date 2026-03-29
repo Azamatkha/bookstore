@@ -3,26 +3,25 @@
 @section('title', 'My Wallet | Bookstore')
 
 @section('content')
-    <section class="page-shell py-8">
+    <section class="page-shell py-6 sm:py-8">
         <div class="mb-8">
-            <h1 class="mt-2 text-5xl">Wallet</h1>
+            <h1 class="mt-2 text-3xl sm:text-4xl lg:text-5xl">Wallet</h1>
         </div>
 
-        <div class="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
-            <div class="panel p-6 border-[#0f172a] border-1 bg-white">
+        <div class="grid gap-6 lg:gap-8 lg:grid-cols-[1fr_0.9fr]">
+            <div class="panel border border-slate-200 bg-white p-5 sm:p-6">
                 <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Your internal card</p>
-                <p class="mt-4 text-3xl font-semibold tracking-[0.1em] text-slate-950">{{ chunk_split($wallet->card_number, 4, ' ') }}</p>
-                <br>
+                <p class="mt-4 break-all text-xl font-semibold tracking-[0.08em] text-slate-950 sm:text-2xl lg:text-3xl">{{ chunk_split($wallet->card_number, 4, ' ') }}</p>
                 <p class="mt-4 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400 border-t border-slate-100 pt-6">Card owner</p>
-                <p class="mt-4 text-3xl font-semibold tracking-[0.1em] text-slate-950">{{ $wallet->user->name ?? 'Unknown' }}</p>
+                <p class="mt-4 text-2xl font-semibold tracking-[0.08em] text-slate-950 sm:text-3xl">{{ $wallet->user->name ?? 'Unknown' }}</p>
                 <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-6">
                     <span class="text-sm text-slate-500">Current balance</span>
-                    <span class="text-3xl font-semibold text-slate-950">@money($wallet->balance)</span>
+                    <span class="text-2xl font-semibold text-slate-950 sm:text-3xl">@money($wallet->balance)</span>
                 </div>
             </div>
 
-            <div class="panel p-6 border-[#0f172a] border-1 bg-white">
-                <h2 class="text-3xl">Top up wallet</h2>
+            <div class="panel border border-slate-200 bg-white p-5 sm:p-6">
+                <h2 class="text-2xl sm:text-3xl">Top up wallet</h2>
                 <form method="POST" action="{{ route('wallet.top-up') }}" class="mt-6 space-y-4">
                     @csrf
 
@@ -55,9 +54,9 @@
             </div>
         </div>
 
-        <div class="panel mt-8 p-6">
-            <div class="flex items-center justify-between">
-                <h2 class="text-3xl">Transaction History</h2>
+        <div class="panel mt-8 p-5 sm:p-6">
+            <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                <h2 class="text-2xl sm:text-3xl">Transaction History</h2>
                 <p class="text-sm text-slate-500">{{ $transactions->count() }} records</p>
             </div>
 

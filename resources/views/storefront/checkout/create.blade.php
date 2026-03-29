@@ -3,16 +3,16 @@
 @section('title', 'Checkout | Bookstore')
 
 @section('content')
-    <section class="page-shell py-8">
+    <section class="page-shell py-6 sm:py-8">
         <div class="mb-8">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Checkout</p>
-            <h1 class="mt-2 text-5xl">Finish your order.</h1>
+            <h1 class="mt-2 text-3xl sm:text-4xl lg:text-5xl">Finish your order.</h1>
         </div>
 
-        <form method="POST" action="{{ route('checkout.store') }}" class="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+        <form method="POST" action="{{ route('checkout.store') }}" class="grid gap-6 lg:gap-8 lg:grid-cols-[1fr_0.9fr]">
             @csrf
 
-            <div class="panel p-6">
+            <div class="panel p-5 sm:p-6">
                 <div class="grid gap-6">
                     <div>
                         <label class="field-label" for="address">Address</label>
@@ -44,7 +44,7 @@
                 </div>
             </div>
 
-            <aside class="panel p-6">
+            <aside class="panel p-5 sm:p-6">
                 <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Order Summary</p>
                 <div class="mt-6 space-y-4">
                     @foreach($items as $item)
@@ -62,7 +62,7 @@
                     <p class="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">{{ $message }}</p>
                 @enderror
 
-                <div class="mt-6 flex items-center justify-between text-xl font-semibold text-slate-950">
+                <div class="mt-6 flex items-center justify-between text-lg font-semibold text-slate-950 sm:text-xl">
                     <span>Total</span>
                     <span>@money($total)</span>
                 </div>
