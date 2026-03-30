@@ -18,44 +18,55 @@
 
                 <div class="absolute right-0 z-30 mt-2 w-[min(22rem,calc(100vw-1.5rem))] rounded-[1.35rem] border border-slate-200 bg-white p-2.5 shadow-[0_16px_40px_-24px_rgba(15,23,42,0.22)] sm:mt-3 sm:rounded-[1.5rem] sm:p-3">
                     <div class="grid gap-1.5">
-                        <a href="{{ url('/#catalog') }}" class="nav-btn-secondary w-full">Catalog</a>
-                        <a href="{{ route('cart.index') }}" class="nav-btn-secondary w-full">Cart ({{ $cartCount }})</a>
+                        <div class="flex justify-center gap-4 py-2 text-sm font-medium text-slate-500">
+                            <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'font-bold text-slate-950' : 'hover:text-slate-950' }}">EN</a>
+                            <a href="{{ route('lang.switch', 'uz') }}" class="{{ app()->getLocale() === 'uz' ? 'font-bold text-slate-950' : 'hover:text-slate-950' }}">UZ</a>
+                            <a href="{{ route('lang.switch', 'ru') }}" class="{{ app()->getLocale() === 'ru' ? 'font-bold text-slate-950' : 'hover:text-slate-950' }}">RU</a>
+                        </div>
+                        <a href="{{ url('/#catalog') }}" class="nav-btn-secondary w-full">{{ __('messages.catalog') }}</a>
+                        <a href="{{ route('cart.index') }}" class="nav-btn-secondary w-full">{{ __('messages.cart') }} ({{ $cartCount }})</a>
                         @auth
-                            <a href="{{ route('wallet.show') }}" class="nav-btn-secondary w-full">Wallet</a>
-                            <a href="{{ route('orders.index') }}" class="nav-btn-secondary w-full">My Orders</a>
+                            <a href="{{ route('wallet.show') }}" class="nav-btn-secondary w-full">{{ __('messages.wallet') }}</a>
+                            <a href="{{ route('orders.index') }}" class="nav-btn-secondary w-full">{{ __('messages.my_orders') }}</a>
                             @if(auth()->user()->is_admin)
-                                <a href="{{ route('admin.dashboard') }}" class="nav-btn-primary w-full">Admin Panel</a>
+                                <a href="{{ route('admin.dashboard') }}" class="nav-btn-primary w-full">{{ __('messages.admin_panel') }}</a>
                             @endif
-                            <a href="{{ route('profile.edit') }}" class="nav-btn-secondary w-full">Profile</a>
+                            <a href="{{ route('profile.edit') }}" class="nav-btn-secondary w-full">{{ __('messages.profile_nav') }}</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="nav-btn-secondary w-full">Logout</button>
+                                <button type="submit" class="nav-btn-secondary w-full">{{ __('messages.logout') }}</button>
                             </form>
                         @else
-                            <a href="{{ route('login') }}" class="nav-btn-secondary w-full">Login</a>
-                            <a href="{{ route('register') }}" class="nav-btn-primary w-full">Create account</a>
+                            <a href="{{ route('login') }}" class="nav-btn-secondary w-full">{{ __('messages.login') }}</a>
+                            <a href="{{ route('register') }}" class="nav-btn-primary w-full">{{ __('messages.create_account') }}</a>
                         @endauth
                     </div>
                 </div>
             </details>
 
             <nav class="hidden lg:flex lg:flex-wrap lg:items-center lg:justify-end lg:gap-1.5 xl:gap-2">
-                <a href="{{ url('/#catalog') }}" class="nav-btn-secondary">Catalog</a>
-                <a href="{{ route('cart.index') }}" class="nav-btn-secondary">Cart ({{ $cartCount }})</a>
+                <div class="mr-6 flex items-center gap-2 text-sm font-medium text-slate-500">
+                    <a href="{{ route('lang.switch', 'en') }}" class="{{ app()->getLocale() === 'en' ? 'font-bold text-slate-950' : 'hover:text-slate-950' }}">EN</a> <span class="text-slate-300">|</span>
+                    <a href="{{ route('lang.switch', 'uz') }}" class="{{ app()->getLocale() === 'uz' ? 'font-bold text-slate-950' : 'hover:text-slate-950' }}">UZ</a> <span class="text-slate-300">|</span>
+                    <a href="{{ route('lang.switch', 'ru') }}" class="{{ app()->getLocale() === 'ru' ? 'font-bold text-slate-950' : 'hover:text-slate-950' }}">RU</a>
+                </div>
+
+                <a href="{{ url('/#catalog') }}" class="nav-btn-secondary">{{ __('messages.catalog') }}</a>
+                <a href="{{ route('cart.index') }}" class="nav-btn-secondary">{{ __('messages.cart') }} ({{ $cartCount }})</a>
                 @auth
-                    <a href="{{ route('wallet.show') }}" class="nav-btn-secondary">Wallet</a>
-                    <a href="{{ route('orders.index') }}" class="nav-btn-secondary">My Orders</a>
+                    <a href="{{ route('wallet.show') }}" class="nav-btn-secondary">{{ __('messages.wallet') }}</a>
+                    <a href="{{ route('orders.index') }}" class="nav-btn-secondary">{{ __('messages.my_orders') }}</a>
                     @if(auth()->user()->is_admin)
-                        <a href="{{ route('admin.dashboard') }}" class="nav-btn-primary">Admin Panel</a>
+                        <a href="{{ route('admin.dashboard') }}" class="nav-btn-primary">{{ __('messages.admin_panel') }}</a>
                     @endif
-                    <a href="{{ route('profile.edit') }}" class="nav-btn-secondary">Profile</a>
+                    <a href="{{ route('profile.edit') }}" class="nav-btn-secondary">{{ __('messages.profile_nav') }}</a>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="nav-btn-secondary">Logout</button>
+                        <button type="submit" class="nav-btn-secondary">{{ __('messages.logout') }}</button>
                     </form>
                 @else
-                    <a href="{{ route('login') }}" class="nav-btn-secondary">Login</a>
-                    <a href="{{ route('register') }}" class="nav-btn-primary">Create account</a>
+                    <a href="{{ route('login') }}" class="nav-btn-secondary">{{ __('messages.login') }}</a>
+                    <a href="{{ route('register') }}" class="nav-btn-primary">{{ __('messages.create_account') }}</a>
                 @endauth
             </nav>
         </div>

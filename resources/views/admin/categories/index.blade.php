@@ -1,21 +1,21 @@
 @extends('layouts.admin')
 
-@section('title', 'Categories | Admin')
+@section('title', __('messages.categories_admin_title'))
 
 @section('content')
     <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Categories</p>
-            <h1 class="mt-2 text-5xl">Organize the catalog.</h1>
+            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">{{ __('messages.categories') }}</p>
+            <h1 class="mt-2 text-5xl">{{ __('messages.organize_catalog') }}</h1>
         </div>
-        <a href="{{ route('admin.categories.create') }}" class="btn-primary">Add Category</a>
+        <a href="{{ route('admin.categories.create') }}" class="btn-primary">{{ __('messages.add_category') }}</a>
     </div>
 
     <div class="panel mb-6 p-6">
         <form method="GET" action="{{ route('admin.categories.index') }}" class="flex flex-col gap-4 lg:flex-row">
-            <input type="text" name="search" value="{{ $search }}" class="field-input" placeholder="Search categories">
-            <button type="submit" class="btn-primary">Search</button>
-            <a href="{{ route('admin.categories.index') }}" class="btn-secondary">Reset</a>
+            <input type="text" name="search" value="{{ $search }}" class="field-input" placeholder="{{ __('messages.search_categories') }}">
+            <button type="submit" class="btn-primary">{{ __('messages.search_btn') }}</button>
+            <a href="{{ route('admin.categories.index') }}" class="btn-secondary">{{ __('messages.reset') }}</a>
         </form>
     </div>
 
@@ -24,10 +24,10 @@
             <table class="min-w-full">
                 <thead class="table-head">
                     <tr>
-                        <th class="px-6 py-4">Category</th>
-                        <th class="px-6 py-4">Slug</th>
-                        <th class="px-6 py-4">Books</th>
-                        <th class="px-6 py-4">Actions</th>
+                        <th class="px-6 py-4">{{ __('messages.category') }}</th>
+                        <th class="px-6 py-4">{{ __('messages.slug') }}</th>
+                        <th class="px-6 py-4">{{ __('messages.books') }}</th>
+                        <th class="px-6 py-4">{{ __('messages.actions') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,19 +38,19 @@
                             <td class="px-6 py-4 text-slate-600">{{ $category->books_count }}</td>
                             <td class="px-6 py-4">
                                 <div class="flex flex-wrap gap-2">
-                                    <a href="{{ route('admin.categories.show', $category) }}" class="btn-secondary">View</a>
-                                    <a href="{{ route('admin.categories.edit', $category) }}" class="btn-secondary">Edit</a>
+                                    <a href="{{ route('admin.categories.show', $category) }}" class="btn-secondary">{{ __('messages.view') }}</a>
+                                    <a href="{{ route('admin.categories.edit', $category) }}" class="btn-secondary">{{ __('messages.edit') }}</a>
                                     <form method="POST" action="{{ route('admin.categories.destroy', $category) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-danger">Delete</button>
+                                        <button type="submit" class="btn-danger">{{ __('messages.delete') }}</button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="px-6 py-8 text-center text-slate-500">No categories found.</td>
+                            <td colspan="4" class="px-6 py-8 text-center text-slate-500">{{ __('messages.no_categories_found') }}</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -15,9 +15,16 @@ use App\Http\Controllers\Storefront\OrderController as StoreOrderController;
 use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/lang/{locale}', function (string $locale) {
+    if (! in_array($locale, ['en', 'uz', 'ru'])) {
+        abort(400);
+    }
+    session()->put('locale', $locale);
+    return back();
+})->name('lang.switch');
+
 Route::get('/', StoreHomeController::class)->name('home');
 Route::get('/books/{book:slug}', [StoreBookController::class, 'show'])->name('books.show');
-
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
 Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
 Route::patch('/cart/{book}', [CartController::class, 'update'])->name('cart.update');

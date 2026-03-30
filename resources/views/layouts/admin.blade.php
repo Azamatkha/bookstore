@@ -20,13 +20,13 @@
 
                 <main class="min-w-0 flex-1 p-6 lg:p-8">
                     <div class="mb-6 flex flex-wrap gap-2 lg:hidden">
-                        <a href="{{ route('admin.dashboard') }}" class="btn-secondary">Dashboard</a>
-                        <a href="{{ route('admin.books.index') }}" class="btn-secondary">Books</a>
-                        <a href="{{ route('admin.categories.index') }}" class="btn-secondary">Categories</a>
-                        <a href="{{ route('admin.authors.index') }}" class="btn-secondary">Authors</a>
-                        <a href="{{ route('admin.orders.index') }}" class="btn-secondary">Orders</a>
-                        <a href="{{ route('admin.api-docs') }}" class="btn-secondary">API Docs</a>
-                        <a href="{{ route('home') }}" class="btn-primary">Storefront</a>
+                        <a href="{{ route('admin.dashboard') }}" class="btn-secondary">{{ __('messages.dashboard') }}</a>
+                        <a href="{{ route('admin.books.index') }}" class="btn-secondary">{{ __('messages.books') }}</a>
+                        <a href="{{ route('admin.categories.index') }}" class="btn-secondary">{{ __('messages.categories') }}</a>
+                        <a href="{{ route('admin.authors.index') }}" class="btn-secondary">{{ __('messages.authors') }}</a>
+                        <a href="{{ route('admin.orders.index') }}" class="btn-secondary">{{ __('messages.orders') }}</a>
+                        <a href="{{ route('admin.api-docs') }}" class="btn-secondary">{{ __('messages.api_docs') }}</a>
+                        <a href="{{ route('home') }}" class="btn-primary">{{ __('messages.open_storefront') }}</a>
                     </div>
 
                     <x-flash-message />

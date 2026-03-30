@@ -7,16 +7,47 @@ use App\Http\Requests\Admin\CategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
+    private function upload($file)
+    {
+        $fileName = 'categories/' . uniqid() . '.' . $file->getClientOriginalExtension();
+
+        Http::withOptions(['verify' => false])
+            ->withHeaders([
+                'Authorization' => 'Bearer ' . env('SUPABASE_KEY'),
+                'Content-Type' => $file->getMimeType(),
+            ])
+            ->withBody(file_get_contents($file), $file->getMimeType())
+            ->put(env('SUPABASE_URL') . '/storage/v1/object/books/' . $fileName);
+
+        return env('SUPABASE_URL') . '/storage/v1/object/public/books/' . $fileName;
+    }
+
+    private function delete($url)
+    {
+        $path = str_replace(
+            env('SUPABASE_URL') . '/storage/v1/object/public/books/',
+            '',
+            $url
+        );
+
+        Http::withOptions(['verify' => false])
+            ->withHeaders([
+                'Authorization' => 'Bearer ' . env('SUPABASE_KEY'),
+            ])
+            ->delete(env('SUPABASE_URL') . '/storage/v1/object/books/' . $path);
+    }
+
     public function index(Request $request): View
     {
         $search = $request->string('search')->toString();
+
         $categories = Category::query()
-            ->when($search, fn ($query) => $query->where('name', 'like', "%{$search}%"))
+            ->when($search, fn ($q) => $q->where('name', 'like', "%{$search}%"))
             ->withCount('books')
             ->latest()
             ->paginate(12)
@@ -33,22 +64,15 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request): RedirectResponse
     {
         $data = $request->validated();
-        $data['image'] = $request->hasFile('image')
-            ? $request->file('image')->store('categories', 'public')
-            : null;
+
+        if ($request->hasFile('image')) {
+            $data['image'] = $this->upload($request->file('image'));
+        }
 
         Category::create($data);
 
-        return redirect()
-            ->route('admin.categories.index')
-            ->with('success', 'Category created successfully.');
-    }
-
-    public function show(Category $category): View
-    {
-        $category->loadCount('books');
-
-        return view('admin.categories.show', compact('category'));
+        return redirect()->route('admin.categories.index')
+            ->with('success', __('messages.category_created_successfully'));
     }
 
     public function edit(Category $category): View
@@ -61,32 +85,32 @@ class CategoryController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
+
             if ($category->image) {
-                Storage::disk('public')->delete($category->image);
+                $this->delete($category->image);
             }
 
-            $data['image'] = $request->file('image')->store('categories', 'public');
+            $data['image'] = $this->upload($request->file('image'));
+
         } else {
             unset($data['image']);
         }
 
         $category->update($data);
 
-        return redirect()
-            ->route('admin.categories.index')
-            ->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.categories.index')
+            ->with('success', __('messages.category_updated_successfully'));
     }
 
     public function destroy(Category $category): RedirectResponse
     {
         if ($category->image) {
-            Storage::disk('public')->delete($category->image);
+            $this->delete($category->image);
         }
 
         $category->delete();
 
-        return redirect()
-            ->route('admin.categories.index')
-            ->with('success', 'Category deleted successfully.');
+        return redirect()->route('admin.categories.index')
+            ->with('success', __('messages.category_deleted_successfully'));
     }
 }

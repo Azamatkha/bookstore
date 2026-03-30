@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 
-@section('title', $author->name . ' | Admin')
+@section('title', $author->name . ' | ' . __('messages.admin_nav'))
 
 @section('content')
     <div class="mb-8 flex items-center justify-between gap-4">
         <div>
-            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Author Detail</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">{{ __('messages.author_detail') }}</p>
             <h1 class="mt-2 text-5xl">{{ $author->name }}</h1>
         </div>
         <div class="flex gap-3">
-            <a href="{{ route('admin.authors.edit', $author) }}" class="btn-primary">Edit</a>
-            <a href="{{ route('admin.authors.index') }}" class="btn-secondary">Back</a>
+            <a href="{{ route('admin.authors.edit', $author) }}" class="btn-primary">{{ __('messages.edit') }}</a>
+            <a href="{{ route('admin.authors.index') }}" class="btn-secondary">{{ __('messages.back') }}</a>
         </div>
     </div>
 
@@ -18,23 +18,23 @@
         <div class="panel overflow-hidden">
             <div class="aspect-[4/5] bg-gradient-to-br from-amber-100 to-slate-100">
                 @if($author->photo)
-                    <img src="{{ asset('storage/' . $author->photo) }}" alt="{{ $author->name }}" class="h-full w-full object-cover">
+                    <img src="{{ $author->photo }}" alt="{{ $author->name }}" class="h-full w-full object-cover">
                 @endif
             </div>
         </div>
 
         <div class="space-y-4">
             <div class="panel p-6">
-                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Born year</p>
-                <p class="mt-2 text-lg font-semibold text-slate-900">{{ $author->born_year ?: 'N/A' }}</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{{ __('messages.born_year') }}</p>
+                <p class="mt-2 text-lg font-semibold text-slate-900">{{ $author->born_year ?: __('messages.n_a') }}</p>
 
-                <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Books count</p>
+                <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{{ __('messages.books_count') }}</p>
                 <p class="mt-2 text-lg font-semibold text-slate-900">{{ $author->books_count }}</p>
             </div>
 
             <div class="panel p-6">
-                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">Bio</p>
-                <p class="mt-4 leading-7 text-slate-600">{{ $author->bio ?: 'No biography provided.' }}</p>
+                <p class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">{{ __('messages.bio') }}</p>
+                <p class="mt-4 leading-7 text-slate-600">{{ $author->bio ?: __('messages.no_biography_provided') }}</p>
             </div>
         </div>
     </div>

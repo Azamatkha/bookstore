@@ -15,30 +15,29 @@
                 <div class="hero-orbit hero-orbit--two" aria-hidden="true"></div>
 
                 <div class="hero-copy relative z-10">
-                    <p class="hero-kicker">ATTENTION BOOK LOVERS</p>
+                    <p class="hero-kicker">{{ __('messages.attention_book_lovers') }}</p>
                     <br>
-                    <h1 class="hero-quote-heading">Don't just read books, live them! Books are the key to unlock the world.</h1>
-                    <p class="hero-quote-author">BookStore owner</p>
+                    <h1 class="hero-quote-heading">{{ __('messages.hero_quote') }}</h1>
+                    <p class="hero-quote-author">{{ __('messages.bookstore_owner') }}</p>
 
                     <p class="hero-support">
-                        Discover a world of stories waiting to be explored. From thrilling adventures to captivating tales, we have something for every reader.
-                        We have a wide range of books for all ages and interests. Whether you're looking for fiction, non-fiction, or anything in between, we have something for you.
+                        {{ __('messages.hero_support') }}
                     </p>
 
                     <div class="mt-6 flex flex-wrap gap-3">
-                        <a href="#catalog" class="btn-primary">Explore Catalog</a>
-                        <a href="{{ route('cart.index') }}" class="btn-secondary">Open Cart</a>
+                        <a href="#catalog" class="btn-primary">{{ __('messages.explore_catalog') }}</a>
+                        <a href="{{ route('cart.index') }}" class="btn-secondary">{{ __('messages.open_cart') }}</a>
                     </div>
                 </div>
             </div>
 
             <div class="featured-stack">
-                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Featured Books</p>
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">{{ __('messages.featured_books') }}</p>
                 @foreach($featuredBooks->take(3) as $featuredBook)
                     <a href="{{ route('books.show', ['book' => $featuredBook->slug]) }}" class="featured-card">
                         <div class="h-28 w-20 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-amber-100 to-slate-100">
                             @if($featuredBook->cover_image)
-                                <img src="{{ asset('storage/' . $featuredBook->cover_image) }}" alt="{{ $featuredBook->title }}" class="h-full w-full object-cover">
+                                <img src="{{ $featuredBook->cover_image }}" alt="{{ $featuredBook->title }}" class="h-full w-full object-cover">
                             @endif
                         </div>
 
@@ -58,14 +57,14 @@
         <div class="panel mb-8 p-6">
             <form method="GET" action="{{ route('home') }}#catalog" class="grid gap-4 lg:grid-cols-6">
                 <div class="lg:col-span-2">
-                    <label class="field-label" for="search">Search</label>
-                    <input id="search" type="text" name="search" value="{{ $filters['search'] ?? '' }}" class="field-input" placeholder="Title, author, category">
+                    <label class="field-label" for="search">{{ __('messages.search_btn') }}</label>
+                    <input id="search" type="text" name="search" value="{{ $filters['search'] ?? '' }}" class="field-input" placeholder="{{ __('messages.search_placeholder') }}">
                 </div>
 
                 <div>
-                    <label class="field-label" for="category">Category</label>
+                    <label class="field-label" for="category">{{ __('messages.category') }}</label>
                     <select id="category" name="category" class="field-select">
-                        <option value="">All categories</option>
+                        <option value="">{{ __('messages.all_categories') }}</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" @selected(($filters['category'] ?? '') == $category->id)>{{ $category->name }}</option>
                         @endforeach
@@ -73,9 +72,9 @@
                 </div>
 
                 <div>
-                    <label class="field-label" for="author">Author</label>
+                    <label class="field-label" for="author">{{ __('messages.author') }}</label>
                     <select id="author" name="author" class="field-select">
-                        <option value="">All authors</option>
+                        <option value="">{{ __('messages.all_authors') }}</option>
                         @foreach($authors as $author)
                             <option value="{{ $author->id }}" @selected(($filters['author'] ?? '') == $author->id)>{{ $author->name }}</option>
                         @endforeach
@@ -83,29 +82,29 @@
                 </div>
 
                 <div>
-                    <label class="field-label" for="sort">Sort</label>
+                    <label class="field-label" for="sort">{{ __('messages.sort') }}</label>
                     <select id="sort" name="sort" class="field-select">
-                        <option value="latest" @selected(($filters['sort'] ?? 'latest') === 'latest')>Latest</option>
-                        <option value="price_asc" @selected(($filters['sort'] ?? '') === 'price_asc')>Price low to high</option>
-                        <option value="price_desc" @selected(($filters['sort'] ?? '') === 'price_desc')>Price high to low</option>
-                        <option value="rating_desc" @selected(($filters['sort'] ?? '') === 'rating_desc')>Top rated</option>
-                        <option value="title_asc" @selected(($filters['sort'] ?? '') === 'title_asc')>Title</option>
+                        <option value="latest" @selected(($filters['sort'] ?? 'latest') === 'latest')>{{ __('messages.latest') }}</option>
+                        <option value="price_asc" @selected(($filters['sort'] ?? '') === 'price_asc')>{{ __('messages.price_low_to_high') }}</option>
+                        <option value="price_desc" @selected(($filters['sort'] ?? '') === 'price_desc')>{{ __('messages.price_high_to_low') }}</option>
+                        <option value="rating_desc" @selected(($filters['sort'] ?? '') === 'rating_desc')>{{ __('messages.top_rated') }}</option>
+                        <option value="title_asc" @selected(($filters['sort'] ?? '') === 'title_asc')>{{ __('messages.title') }}</option>
                     </select>
                 </div>
 
                 <div class="flex items-end gap-3">
-                    <button type="submit" class="btn-primary w-full">Filter</button>
-                    <a href="{{ route('home') }}#catalog" class="btn-secondary w-full text-center">Reset</a>
+                    <button type="submit" class="btn-primary w-full">{{ __('messages.filter') }}</button>
+                    <a href="{{ route('home') }}#catalog" class="btn-secondary w-full text-center">{{ __('messages.reset') }}</a>
                 </div>
             </form>
         </div>
 
         <div class="mb-6 flex items-center justify-between gap-4">
             <div>
-                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">Catalog</p>
-                <h2 class="mt-1 text-4xl">Available Books</h2>
+                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-slate-400">{{ __('messages.catalog') }}</p>
+                <h2 class="mt-1 text-4xl">{{ __('messages.available_books') }}</h2>
             </div>
-            <p class="text-sm text-slate-500">{{ $books->total() }} results</p>
+            <p class="text-sm text-slate-500">{{ $books->total() }} {{ __('messages.results') }}</p>
         </div>
 
         @if($books->count())
@@ -120,8 +119,8 @@
             </div>
         @else
             <div class="panel p-10 text-center">
-                <h3 class="text-3xl">No books matched your filters.</h3>
-                <p class="mt-3 text-slate-500">Try a different keyword, category, or sort option.</p>
+                <h3 class="text-3xl">{{ __('messages.no_books_matched') }}</h3>
+                <p class="mt-3 text-slate-500">{{ __('messages.try_different_keyword') }}</p>
             </div>
         @endif
     </section>

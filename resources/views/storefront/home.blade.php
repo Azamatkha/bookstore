@@ -37,7 +37,7 @@
                     <a href="{{ route('books.show', ['book' => $featuredBook->slug]) }}" class="featured-card">
                         <div class="h-24 w-16 shrink-0 overflow-hidden rounded-2xl bg-gradient-to-br from-amber-100 to-slate-100 sm:h-[6.5rem] sm:w-[4.5rem]">
                             @if($featuredBook->cover_image)
-                                <img src="{{ asset('storage/' . $featuredBook->cover_image) }}" alt="{{ $featuredBook->title }}" class="h-full w-full object-cover">
+                                <img src="{{ $featuredBook->cover_image }}" alt="{{ $featuredBook->title }}" class="h-full w-full object-cover">
                             @endif
                         </div>
 

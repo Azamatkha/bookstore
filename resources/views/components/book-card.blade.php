@@ -5,7 +5,7 @@
     <a href="{{ route('books.show', ['book' => $book->slug]) }}" class="relative block">
         <div class="h-48 overflow-hidden bg-gradient-to-br from-amber-100 via-white to-slate-100 min-[420px]:h-52 lg:h-56">
             @if($book->cover_image)
-                <img src="{{ asset('storage/' . $book->cover_image) }}" alt="{{ $book->title }}" class="h-full w-full object-cover">
+                <img src="{{ $book->cover_image }}" alt="{{ $book->title }}" class="h-full w-full object-cover">
             @else
                 <div class="flex h-full items-center justify-center bg-[radial-gradient(circle_at_top,_rgba(251,191,36,0.25),_transparent_35%),linear-gradient(135deg,#f8fafc,#fff7ed)] px-4 text-center">
                     <p class="line-clamp-3 font-serif text-lg text-slate-700 sm:text-xl">{{ $book->title }}</p>
@@ -49,14 +49,14 @@
                         type="submit"
                         class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-300 bg-white text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:bg-slate-50 hover:shadow-[0_14px_28px_-22px_rgba(15,23,42,0.35)] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none"
                         @disabled(! $book->in_stock)
-                        aria-label="{{ $book->in_stock ? 'Add ' . $book->title . ' to cart' : 'Out of stock' }}"
+                        aria-label="{{ $book->in_stock ? __('messages.add_to_cart_aria', ['title' => $book->title]) : __('messages.out_of_stock') }}"
                     >
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M2.75 3.5h1.7l1.9 9.1a1 1 0 00.98.79h8.55a1 1 0 00.97-.75l1.53-5.64H6.04" />
                             <circle cx="9.25" cy="18.25" r="1.35" />
                             <circle cx="16.5" cy="18.25" r="1.35" />
                         </svg>
-                        <span class="sr-only">Add to Cart</span>
+                        <span class="sr-only">{{ __('messages.add_to_cart_btn') }}</span>
                     </button>
                 </form>
 
@@ -65,7 +65,7 @@
                     <input type="hidden" name="book_id" value="{{ $book->id }}">
                     <input type="hidden" name="checkout" value="1">
                     <button type="submit" class="btn-primary w-full rounded-xl px-3 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 disabled:hover:shadow-none sm:px-3.5" @disabled(! $book->in_stock)>
-                        {{ $book->in_stock ? 'Buy Now' : 'Out of Stock' }}
+                        {{ $book->in_stock ? __('messages.buy_now') : __('messages.out_of_stock') }}
                     </button>
                 </form>
             </div>
